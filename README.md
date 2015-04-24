@@ -7,6 +7,7 @@ MD-SOAR development Vagrant environment
 - VirtualBox
 - Vagrant
 - Maven 3
+- Oracle JDK (expects a file named jdk-7u75-linux-x64.tar.gz in the `mdsoar-vagrant` checkout directory)
 
 ## Usage
 
@@ -15,6 +16,12 @@ Following the DSpace documentation conventions, `[dspace-source]` indicates the 
 
 ```
 $ git clone https://github.com/peichman-umd/mdsoar-vagrant.git
+```
+
+Download the Oracle JDK 7u75 64-bit into the `mdsoar-vagrant` directory. Make sure the file is named
+`jdk-7u75-linux-x64.tar.gz`.
+
+```
 $ cp mdsoar-vagrant/local.properties [dspace-source]
 $ cd [dspace-source]
 $ mvn package -Denv=local
