@@ -4,11 +4,17 @@
 # not needed?
 
 # Oracle JDK
-if [ ! -e /vagrant/jdk-7u75-linux-x64.tar.gz ]; then
-    echo >&2 "No JDK found. Please download the Oracle JDK and place it in this directory."
+JDK=$(find /vagrant/dist -maxdepth 1 -type f -name 'jdk-*.tar.gz' | tail -n1)
+if [ -z "$JDK" ]; then
+    echo >&2 "No JDK found. Please download an Oracle JDK tar.gz and place it in [vagrant]/dist"
     exit 1
 fi
-tar xzvf /vagrant/jdk-7u75-linux-x64.tar.gz -C /apps
+echo "Found JDK in $JDK"
+tar xzvf "$JDK" -C /apps 
+cat > /etc/profile.d/mdsoar.sh <<END
+export JAVA_HOME=$(find /apps -maxdepth 1 -type d -name 'jdk*' | tail -n1)
+export PATH=\$JAVA_HOME/bin:\$PATH
+END
 
 # Maven
 # not needed on vagrant guest?
