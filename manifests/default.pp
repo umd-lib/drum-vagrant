@@ -20,8 +20,14 @@ postgresql::server::pg_hba_rule { 'dspace access':
     order       => '001',
 }
 
-file { "/etc/environment":
-    content => inline_template("JAVA_HOME=/apps/jdk1.7.0_75")
+file { "/etc/profile.d/mdsoar.sh":
+    content => inline_template("export JAVA_HOME=/apps/jdk1.7.0_75\nexport PATH=\$JAVA_HOME/bin:\$PATH")
+}
+
+file { "/apps/mdsoar":
+    ensure => 'directory',
+    owner  => 'vagrant',
+    group  => 'vagrant',
 }
 
 # by default the CentOS 6.6 iptables config has
