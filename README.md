@@ -4,6 +4,7 @@ MD-SOAR development Vagrant environment
 
 ## Prerequisites
 
+- [MD-SOAR](https://github.com/umd-lib/mdsoar) source code
 - VirtualBox
 - Vagrant
 - Maven 3
@@ -23,8 +24,10 @@ Following the DSpace documentation conventions, `[dspace-source]` indicates the 
 
 ```
 $ git clone https://github.com/peichman-umd/mdsoar-vagrant.git
+
 # download an Oracle JDK to mdsoar-vagrant/dist (see the "Prerequisites"
 # section above for more information)
+
 $ cp mdsoar-vagrant/local.properties [dspace-source]
 $ cd [dspace-source]
 $ mvn package -Denv=local
