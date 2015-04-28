@@ -39,6 +39,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", path: 'bootstrap.sh'
   # set up the Tomcat contexts for the DSpace applications
-  config.vm.provision "shell", path: 'tomcat.sh'
+  # run as the Vagrant user (non-privileged)
+  config.vm.provision "shell", path: 'tomcat.sh', privileged: false
+
   config.vm.provision "puppet"
 end

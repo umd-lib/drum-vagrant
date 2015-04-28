@@ -13,22 +13,25 @@ echo "Found JDK in $JDK"
 tar xzvf "$JDK" -C /apps 
 cat > /etc/profile.d/mdsoar.sh <<END
 export JAVA_HOME=$(find /apps -maxdepth 1 -type d -name 'jdk*' | tail -n1)
-export PATH=\$JAVA_HOME/bin:\$PATH
+export PATH=\$JAVA_HOME/bin:/apps/ant/bin:\$PATH
 END
 
 # Maven
 # not needed on vagrant guest?
 
 # Ant
+# can't install via yum since that is only version 1.7.1
 ANT_PKG_URL=http://apache.osuosl.org/ant/binaries/apache-ant-1.9.4-bin.tar.gz
-wget -O - "$ANT_PKG_URL" | tar xvzf - -C /apps
+mkdir -p /apps/ant
+wget -q -O - "$ANT_PKG_URL" | tar xvzf - --strip-components 1 --directory /apps/ant
 
 
 # Tomcat
+# can't install via yum since that is only version 6.0.24
 TOMCAT_PKG_URL=http://apache.osuosl.org/tomcat/tomcat-7/v7.0.61/bin/apache-tomcat-7.0.61.tar.gz
-wget -O - "$TOMCAT_PKG_URL" | tar xvzf - -C /apps
-chown -R vagrant:vagrant /apps/apache-tomcat-7.0.61
-cp /vagrant/setenv.sh /apps/apache-tomcat-7.0.61/bin
+mkdir -p /apps/tomcat
+wget -q -O - "$TOMCAT_PKG_URL" | tar xvzf - --strip-components 1 --directory /apps/tomcat
+chown -R vagrant:vagrant /apps/tomcat
 
 # Puppet Modules
 puppet module install puppetlabs-firewall

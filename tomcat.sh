@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# write the context config files for DSpace
+CONTEXT_DIR=/apps/tomcat/conf/Catalina/localhost
 
-mkdir -p /apps/apache-tomcat-7.0.61/conf/Catalina/localhost
+# write the context config files for DSpace
+mkdir -p "$CONTEXT_DIR"
 for APP in jspui oai rdf rest solr sword swordv2 xmlui; do
-    cat > "/apps/apache-tomcat-7.0.61/conf/Catalina/localhost/${APP}.xml" <<XML
+    cat > "$CONTEXT_DIR/${APP}.xml" <<XML
 <?xml version='1.0'?>
 <Context
     docBase="/apps/mdsoar/webapps/${APP}"
@@ -13,12 +14,8 @@ for APP in jspui oai rdf rest solr sword swordv2 xmlui; do
 XML
 done
 
-cat > "/apps/apache-tomcat-7.0.61/conf/Catalina/localhost/ROOT.xml" <<XML
-<?xml version='1.0'?>
-<Context
-    docBase="/apps/mdsoar/webapps/xmlui"
-    reloadable="true"
-    cachingAllowed="false"/>
-XML
+# use the xmlui webapp as the root
+cp "$CONTEXT_DIR/xmlui.xml" "$CONTEXT_DIR/ROOT.xml"
 
-chown -R vagrant:vagrant /apps/apache-tomcat-7.0.61/conf/Catalina
+# environment variables for Tomcat's startup
+cp /vagrant/setenv.sh /apps/tomcat/bin
