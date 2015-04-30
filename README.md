@@ -17,6 +17,13 @@ scripts. Instead, manually download a tar.gz distribution for 64-bit Linux from
 and place it in a `dist/` subdirectory of the `mdsoar-vagrant` checkout
 directory.
 
+### Optional
+
+If you download a Tomcat tarball (with a name matching `apache-tomcat-*.tar.gz`)
+and place it in the [dist](dist) directory, the [bootstrap.sh](bootstrap.sh)
+provisioning script will use that instead of attempting to download a tarball
+from the Apache mirrors (currently, it will download version 7.0.61).
+
 ## Usage
 
 Following the DSpace documentation conventions, `[dspace-source]` indicates the directory that you have the
