@@ -48,3 +48,10 @@ vagrant@localhost$ tail -f /apps/tomcat/logs/catalina.out
 ```
 
 You should now have a running DSpace/MD-SOAR installation at <http://192.168.22.10:8080/>
+
+## Rebuilding and Redeploying
+
+There is a convenience script, [deploy.sh](deploy.sh), that you can use to run
+the ant `fresh_install` target and restart Tomcat. Note that it does not build
+the application (you still need to do that yourself on the host using Maven),
+nor does it create the administrator account.
