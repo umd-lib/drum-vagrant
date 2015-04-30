@@ -4,7 +4,8 @@ MD-SOAR development Vagrant environment
 
 ## Prerequisites
 
-- [MD-SOAR](https://github.com/umd-lib/mdsoar) source code
+- [MD-SOAR source code](https://github.com/umd-lib/mdsoar)
+- [MD-SOAR environment](https://github.com/umd-lib/mdsoar-env)
 - VirtualBox
 - Vagrant
 - Maven 3
@@ -17,12 +18,13 @@ scripts. Instead, manually download a tar.gz distribution for 64-bit Linux from
 and place it in a `dist/` subdirectory of the `mdsoar-vagrant` checkout
 directory.
 
-### Optional
+The bootstrap provisioning script will pick up any `jdk-*.tar.gz` file, but note
+that production is currently using Java 7u75, so that is the recommended version
+to use for local development.
 
-If you download a Tomcat tarball (with a name matching `apache-tomcat-*.tar.gz`)
-and place it in the [dist](dist) directory, the [bootstrap.sh](bootstrap.sh)
-provisioning script will use that instead of attempting to download a tarball
-from the Apache mirrors (currently, it will download version 7.0.61).
+The [Vagrantfile](Vagrantfile) expects your MD-SOAR source repo to be on your
+host machine at `/apps/git/mdsoar`, and the MD-SOAR environment repo to be at
+`/apps/git/mdsoar-env`.
 
 ## Usage
 
@@ -43,20 +45,23 @@ Then, from the `mdsoar-vagrant` directory:
 ```
 $ vagrant up
 $ vagrant ssh
-vagrant@localhost$ cd /apps/git/mdsoar/dspace/target/dspace-installer
+
+vagrant@localhost$ cd /apps/mdsoar/src/dspace/target/dspace-installer
 vagrant@localhost$ ant fresh_install
-vagrant@localhost$ /apps/tomcat/bin/startup.sh
 vagrant@localhost$ /apps/mdsoar/bin/dspace create-administrator
-```
-Before starting up Tomcat, you may want to run the following in a separate window,
-to monitor Tomcat's startup process:
-```
+
+# Before starting up Tomcat, you may want to run the following in a separate
+# window, to monitor Tomcat's startup process:
 vagrant@localhost$ tail -f /apps/tomcat/logs/catalina.out
+
+vagrant@localhost$ cd /apps/mdsoar/tomcat
+vagrant@localhost$ ./control start
 ```
 
-You should now have a running DSpace/MD-SOAR installation at <http://192.168.22.10:8080/>
+You should now have a running DSpace/MD-SOAR installation at
+<http://192.168.22.10:8080/>
 
-## Rebuilding and Redeploying
+## Redeploying
 
 There is a convenience script, [deploy.sh](deploy.sh), that you can use to run
 the ant `fresh_install` target and restart Tomcat. Note that it does not build

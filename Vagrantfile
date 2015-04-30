@@ -19,8 +19,8 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "/apps/git/mdsoar", "/apps/git/mdsoar"
-  #config.vm.synced_folder "/apps/mdsoar", "/apps/mdsoar"
+  config.vm.synced_folder "/apps/git/mdsoar-env", "/apps/mdsoar"
+  config.vm.synced_folder "/apps/git/mdsoar", "/apps/mdsoar/src"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -38,9 +38,5 @@ Vagrant.configure(2) do |config|
   # information on available options.
 
   config.vm.provision "shell", path: 'bootstrap.sh'
-  # set up the Tomcat contexts for the DSpace applications
-  # run as the Vagrant user (non-privileged)
-  config.vm.provision "shell", path: 'tomcat.sh', privileged: false
-
   config.vm.provision "puppet"
 end

@@ -10,9 +10,12 @@ if [ -z "$JDK" ]; then
     exit 1
 fi
 echo "Found JDK in $JDK"
-tar xzvf "$JDK" -C /apps 
+tar xzvf "$JDK" --directory /apps
+# find the newly extracted JDK
+JAVA_HOME=$(find /apps -maxdepth 1 -type d -name 'jdk*' | tail -n1)
+ln -s "$JAVA_HOME" /apps/java
 cat > /etc/profile.d/mdsoar.sh <<END
-export JAVA_HOME=$(find /apps -maxdepth 1 -type d -name 'jdk*' | tail -n1)
+export JAVA_HOME=$JAVA_HOME
 export PATH=\$JAVA_HOME/bin:/apps/ant/bin:\$PATH
 END
 
@@ -28,17 +31,15 @@ wget -q -O - "$ANT_PKG_URL" | tar xvzf - --strip-components 1 --directory /apps/
 
 # Tomcat
 # can't install via yum since that is only version 6.0.24
-mkdir -p /apps/tomcat
+TOMCAT_VERSION=7.0.59
+TOMCAT=/vagrant/dist/apache-tomcat-${TOMCAT_VERSION}.tar.gz
 # look for a cached tarball
-TOMCAT=$(find /vagrant/dist -maxdepth 1 -type f -name 'apache-tomcat-*.tar.gz' | tail -n1)
-if [ -z "$TOMCAT" ]; then
-    TOMCAT_VERSION=7.0.61
-    TOMCAT_PKG_URL=http://apache.osuosl.org/tomcat/tomcat-7/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
-    TOMCAT=/vagrant/dist/apache-tomcat-${TOMCAT_VERSION}.tar.gz
-    wget -q -O "$TOMCAT" "$TOMCAT_PKG_URL"
+if [ ! -e "$TOMCAT" ]; then
+    TOMCAT_PKG_URL=http://archive.apache.org/dist/tomcat/tomcat-7/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
+    wget -O "$TOMCAT" "$TOMCAT_PKG_URL"
 fi
-tar xvzf "$TOMCAT" --strip-components 1 --directory /apps/tomcat
-chown -R vagrant:vagrant /apps/tomcat
+tar xvzf "$TOMCAT" --directory /apps
+chown -R vagrant:vagrant /apps/apache-tomcat-${TOMCAT_VERSION}
 
 # Puppet Modules
 puppet module install puppetlabs-firewall
