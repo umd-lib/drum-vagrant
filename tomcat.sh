@@ -19,3 +19,6 @@ cp "$CONTEXT_DIR/xmlui.xml" "$CONTEXT_DIR/ROOT.xml"
 
 # environment variables for Tomcat's startup
 cp /vagrant/setenv.sh /apps/tomcat/bin
+
+# Tomcat server configuration
+cp /vagrant/server.xml /apps/tomcat/conf
