@@ -50,12 +50,12 @@ vagrant@localhost$ cd /apps/mdsoar/src/dspace/target/dspace-installer
 vagrant@localhost$ ant fresh_install
 vagrant@localhost$ /apps/mdsoar/bin/dspace create-administrator
 
-# Before starting up Tomcat, you may want to run the following in a separate
-# window, to monitor Tomcat's startup process:
-vagrant@localhost$ tail -f /apps/tomcat/logs/catalina.out
-
 vagrant@localhost$ cd /apps/mdsoar/tomcat
 vagrant@localhost$ ./control start
+
+# After starting up Tomcat, you may want to run the following in a separate
+# window, to monitor Tomcat's startup process:
+vagrant@localhost$ tail -f /apps/mdsoar/tomcat/logs/catalina.out
 ```
 
 You should now have a running DSpace/MD-SOAR installation at

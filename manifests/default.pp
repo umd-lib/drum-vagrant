@@ -26,6 +26,13 @@ file { "/apps/mdsoar":
     group  => 'vagrant',
 }
 
+# Tomcat logs directory
+file { "/apps/mdsoar/tomcat/logs":
+    ensure => 'directory',
+    owner  => 'vagrant',
+    group  => 'vagrant',
+}
+
 # by default the CentOS 6.6 iptables config has
 # all ports closed except for SSH (22)
 firewall { '100 allow http and https access':
