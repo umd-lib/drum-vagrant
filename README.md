@@ -22,9 +22,9 @@ The bootstrap provisioning script will pick up any `jdk-*.tar.gz` file, but note
 that production is currently using Java 7u75, so that is the recommended version
 to use for local development.
 
-The [Vagrantfile](Vagrantfile) expects your MD-SOAR source repo to be on your
-host machine at `/apps/git/mdsoar`, and the MD-SOAR environment repo to be at
-`/apps/git/mdsoar-env`.
+The [Vagrantfile](Vagrantfile) expects the [MD-SOAR source repo](https://github.com/umd-lib/mdsoar)
+to be on your host machine at `/apps/git/mdsoar`, and the
+[MD-SOAR environment repo](https://github.com/umd-lib/mdsoar-env) to be at `/apps/git/mdsoar-env`.
 
 ## Usage
 
@@ -39,7 +39,7 @@ $ git clone https://github.com/peichman-umd/mdsoar-vagrant.git
 
 $ cp mdsoar-vagrant/local.properties [dspace-source]
 $ cd [dspace-source]
-$ mvn package -Denv=local
+$ mvn package -Denv=local -Dmirage2.on=true
 ```
 Then, from the `mdsoar-vagrant` directory:
 ```
