@@ -46,7 +46,7 @@ Then, from the `mdsoar-vagrant` directory:
 $ vagrant up
 $ vagrant ssh
 
-vagrant@localhost$ cd /apps/mdsoar/src/dspace/target/dspace-installer
+vagrant@localhost$ cd /apps/mdsoar/dspace-installer
 vagrant@localhost$ ant fresh_install
 vagrant@localhost$ /apps/mdsoar/bin/dspace create-administrator
 
@@ -64,6 +64,6 @@ You should now have a running DSpace/MD-SOAR installation at
 ## Redeploying
 
 There is a convenience script, [deploy.sh](deploy.sh), that you can use to run
-the ant `fresh_install` target and restart Tomcat. Note that it does not build
+the `ant update_local` target and restart Tomcat. Note that it does not build
 the application (you still need to do that yourself on the host using Maven),
 nor does it create the administrator account.

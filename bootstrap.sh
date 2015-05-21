@@ -19,6 +19,10 @@ export JAVA_HOME=$JAVA_HOME
 export PATH=\$JAVA_HOME/bin:/apps/ant/bin:\$PATH
 END
 
+# Make a local copy of env to avoid syncing files deployed by ant
+cp -r /apps/mdsoar/mdsoar-env/* /apps/mdsoar/
+chown -R vagrant:vagrant /apps
+
 # Maven
 # not needed on vagrant guest?
 
