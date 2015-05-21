@@ -19,8 +19,8 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "/apps/git/mdsoar-env", "/apps/mdsoar"
-  config.vm.synced_folder "/apps/git/mdsoar", "/apps/mdsoar/src"
+  config.vm.synced_folder "/apps/git/mdsoar-env", "/apps/mdsoar/mdsoar-env"
+  config.vm.synced_folder "/apps/git/mdsoar/dspace/target/dspace-installer", "/apps/mdsoar/dspace-installer"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
