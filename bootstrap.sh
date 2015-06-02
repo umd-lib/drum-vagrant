@@ -23,8 +23,22 @@ END
 cp -r /apps/mdsoar/mdsoar-env/* /apps/mdsoar/
 chown -R vagrant:vagrant /apps
 
-# Maven
-# not needed on vagrant guest?
+# Install Maven 3.2.5
+MAVEN_URL=http://archive.apache.org/dist/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz
+wget "$MAVEN_URL"
+tar -xvzf apache-maven-3.2.5-bin.tar.gz -C /apps/
+cat > /etc/profile.d/maven.sh <<END
+export M2_HOME=/apps/apache-maven-3.2.5
+export PATH=\${M2_HOME}/bin:\${PATH}
+END
+MVN_SETTINGS_FILE=/vagrant/dist/settings.xml
+if [ -f "$MVN_SETTINGS_FILE" ]; then
+	mkdir -p /home/vagrant/.m2/
+	cp "$MVN_SETTINGS_FILE" /home/vagrant/.m2/settings.xml
+	chown -R vagrant:vagrant /home/vagrant/
+fi
+
+sh update-solr-env.sh
 
 # Ant
 # can't install via yum since that is only version 1.7.1

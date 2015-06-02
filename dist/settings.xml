@@ -1,0 +1,14 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                       http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <!-- This section configures maven to use the libraries’ nexus server as a proxy for the list of repositories configured under the mirrorOf property -->
+   <mirrors>
+     <mirror>
+       <id>nexus</id>
+        <mirrorOf>*,!hippo-maven2-enterprise,!rubygems-release</mirrorOf>
+       <url>https://maven.lib.umd.edu/nexus/content/groups/public</url>
+     </mirror>
+   </mirrors>
+</settings>

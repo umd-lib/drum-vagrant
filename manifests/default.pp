@@ -36,7 +36,7 @@ file { "/apps/mdsoar/tomcat/logs":
 # by default the CentOS 6.6 iptables config has
 # all ports closed except for SSH (22)
 firewall { '100 allow http and https access':
-    port   => [80, 443, 8080, 8443],
+    port   => [80, 443, 8080, 8443, 8983],
     proto  => tcp,
     action => accept,
 }

@@ -21,7 +21,9 @@ Vagrant.configure(2) do |config|
   # argument is a set of non-required options.
   config.vm.synced_folder "/apps/git/mdsoar-env", "/apps/mdsoar/mdsoar-env"
   config.vm.synced_folder "/apps/git/mdsoar/dspace/target/dspace-installer", "/apps/mdsoar/dspace-installer"
-
+  if Dir["/apps/git/solr-env"] != nil
+    config.vm.synced_folder "/apps/git/solr-env", "/apps/solr-env-sync"
+  end
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
