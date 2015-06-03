@@ -61,6 +61,15 @@ vagrant@localhost$ tail -f /apps/mdsoar/tomcat/logs/catalina.out
 You should now have a running DSpace/MD-SOAR installation at
 <http://192.168.22.10:8080/>
 
+# Using the local solr jetty instance:
+Solr is started on system startup and the following can be done to stop/restart solr.
+
+To stop: `$ /apps/solr-env/jetty/control stop`
+
+To start:  `$ /apps/solr-env/jetty/control start`
+
+Additionally, to update the solr on the vagrant machine with changes on the local machine, the following script can be used: `$ /vagrant/update-solr-env.sh`
+
 ## Redeploying
 
 There is a convenience script, [deploy.sh](deploy.sh), that you can use to run

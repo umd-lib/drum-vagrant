@@ -1,0 +1,27 @@
+#!/bin/sh
+# chkconfig:2345 55 25
+# Description: Starts and stops the solr jetty server.
+
+case "$1" in
+  start)
+
+    echo === Starting Solr ===
+    /bin/su - vagrant -c "cd /apps/solr-env/jetty; ./control start"
+    ;;
+
+  stop)
+    /bin/su - vagrant -c "cd /apps/solr-env/jetty; ./control stop"
+    ;;
+
+  restart)
+    /bin/su - vagrant -c "cd /apps/solr-env/jetty; ./control restart"
+    ;;
+
+  *)
+    echo invalid option
+    exit 1
+    ;;
+
+esac
+
+exit 0
