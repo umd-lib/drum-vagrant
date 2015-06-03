@@ -1,10 +1,7 @@
 #!/bin/bash
 
-if [ ! -f /apps/solr-env/cores/mdsoar-search ]; then
- ln -s /apps/mdsoar/solr/search /apps/solr-env/cores/mdsoar-search
- ln -s /apps/mdsoar/solr/statistics /apps/solr-env/cores/mdsoar-statistics
- ln -s /apps/mdsoar/solr/oai /apps/solr-env/cores/mdsoar-oai
-fi
+# Add mdsoar solr cores, if it does not exist already.
+/vagrant/scripts/mdsoar-solr-cores.sh
 
 if [ -z `pgrep -f jetty:run` ]; then
  /apps/solr-env/jetty/control start

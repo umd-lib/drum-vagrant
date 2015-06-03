@@ -50,6 +50,9 @@ vagrant@localhost$ cd /apps/mdsoar/dspace-installer
 vagrant@localhost$ ant fresh_install
 vagrant@localhost$ /apps/mdsoar/bin/dspace create-administrator
 
+# Add mdsoar solr cores
+vagrant@localhost$ /vagrant/scripts/mdsoar-solr-cores.sh
+
 vagrant@localhost$ cd /apps/mdsoar/tomcat
 vagrant@localhost$ ./control start
 
@@ -68,7 +71,7 @@ To stop: `$ /apps/solr-env/jetty/control stop`
 
 To start:  `$ /apps/solr-env/jetty/control start`
 
-Additionally, to update the solr on the vagrant machine with changes on the local machine, the following script can be used: `$ /vagrant/update-solr-env.sh`
+Additionally, to update the solr-env on the vagrant machine with changes on the local machine, the following script can be used: `$ /vagrant/update-solr-env.sh`
 
 ## Redeploying
 
