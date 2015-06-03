@@ -40,5 +40,6 @@ Vagrant.configure(2) do |config|
   # information on available options.
 
   config.vm.provision "shell", path: 'bootstrap.sh'
+  config.vm.provision "shell", path: 'update-solr-env.sh'
   config.vm.provision "puppet"
 end
