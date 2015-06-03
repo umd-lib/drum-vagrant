@@ -72,7 +72,7 @@ Additionally, to update the solr on the vagrant machine with changes on the loca
 
 ## Redeploying
 
-There is a convenience script, [deploy.sh](deploy.sh), that you can use to run
+There is a convenience script, [deploy.sh](scripts/deploy.sh), that you can use to run
 the `ant update_local` target and restart Tomcat. Note that it does not build
 the application (you still need to do that yourself on the host using Maven),
 nor does it create the administrator account.

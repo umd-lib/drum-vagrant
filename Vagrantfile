@@ -39,7 +39,7 @@ Vagrant.configure(2) do |config|
   # View the documentation for the provider you are using for more
   # information on available options.
 
-  config.vm.provision "shell", path: 'bootstrap.sh'
-  config.vm.provision "shell", path: 'update-solr-env.sh'
+  config.vm.provision "shell", path: 'scripts/bootstrap.sh'
+  config.vm.provision "shell", path: 'scripts/update-solr-env.sh'
   config.vm.provision "puppet"
 end
