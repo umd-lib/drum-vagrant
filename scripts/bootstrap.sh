@@ -46,9 +46,14 @@ fi
 
 # Ant
 # can't install via yum since that is only version 1.7.1
-ANT_PKG_URL=http://apache.osuosl.org/ant/binaries/apache-ant-1.9.4-bin.tar.gz
+ANT_VERSION=1.9.4
+ANT=/vagrant/dist/apache-ant-${ANT_VERSION}-bin.tar.gz
+ANT_PKG_URL=https://archive.apache.org/dist/ant/binaries/apache-ant-1.9.4-bin.tar.gz
 mkdir -p /apps/ant
-wget -q -O - "$ANT_PKG_URL" | tar xvzf - --strip-components 1 --directory /apps/ant
+if [ ! -e "$ANT" ]; then
+    wget -q -O "$ANT" "$ANT_PKG_URL"
+fi
+tar xvzf "$ANT" --strip-components 1 --directory /apps/ant
 
 
 # Tomcat
