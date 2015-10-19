@@ -6,6 +6,7 @@ MD-SOAR development Vagrant environment
 
 - [MD-SOAR source code](https://github.com/umd-lib/mdsoar)
 - [MD-SOAR environment](https://github.com/umd-lib/mdsoar-env)
+- [Solr environment](https://github.com/umd-lib/solr-env) (**local** branch)
 - VirtualBox
 - Vagrant
 - Maven 3
@@ -22,9 +23,12 @@ The bootstrap provisioning script will pick up any `jdk-*.tar.gz` file, but note
 that production is currently using Java 7u75, so that is the recommended version
 to use for local development.
 
-The [Vagrantfile](Vagrantfile) expects the [MD-SOAR source repo](https://github.com/umd-lib/mdsoar)
-to be on your host machine at `/apps/git/mdsoar`, and the
-[MD-SOAR environment repo](https://github.com/umd-lib/mdsoar-env) to be at `/apps/git/mdsoar-env`.
+The [Vagrantfile](Vagrantfile) expects the [MD-SOAR source
+repo](https://github.com/umd-lib/mdsoar) to be on your host machine at
+`/apps/git/mdsoar`, the [MD-SOAR environment
+repo](https://github.com/umd-lib/mdsoar-env) to be at `/apps/git/mdsoar-env`,
+and the [Solr environment repo](https://github.com/umd-lib/solr-env) to be at
+`/apps/git/solr-env`.
 
 ## Usage
 
@@ -32,7 +36,7 @@ Following the DSpace documentation conventions, `[dspace-source]` indicates the 
 [MD-SOAR](https://github.com/umd-lib/mdsoar) source code in.
 
 ```
-$ git clone https://github.com/peichman-umd/mdsoar-vagrant.git
+$ git clone https://github.com/umd-lib/mdsoar-vagrant.git
 
 # download an Oracle JDK to mdsoar-vagrant/dist (see the "Prerequisites"
 # section above for more information)
@@ -41,7 +45,9 @@ $ cp mdsoar-vagrant/local.properties [dspace-source]
 $ cd [dspace-source]
 $ mvn package -Denv=local -Dmirage2.on=true
 ```
+
 Then, from the `mdsoar-vagrant` directory:
+
 ```
 $ vagrant up
 $ vagrant ssh
