@@ -24,6 +24,14 @@ postgresql::server::role { 'root':
     superuser => true,
 }
 
+# required packages to generate thumbnails (LIBCIR-71)
+package { "ghostscript":
+    ensure => present,
+}
+package { "ImageMagick":
+    ensure => present,
+}
+
 file { "/apps/mdsoar":
     ensure => 'directory',
     owner  => 'vagrant',
