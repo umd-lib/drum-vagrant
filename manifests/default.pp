@@ -19,6 +19,10 @@ postgresql::server::pg_hba_rule { 'dspace access':
     auth_method => 'md5',
     order       => '001',
 }
+# ensure there is a "root" superuser, for compatability with production db dumps
+postgresql::server::role { 'root':
+    superuser => true,
+}
 
 file { "/apps/mdsoar":
     ensure => 'directory',
@@ -36,7 +40,7 @@ file { "/apps/mdsoar/tomcat/logs":
 # by default the CentOS 6.6 iptables config has
 # all ports closed except for SSH (22)
 firewall { '100 allow http and https access':
-    port   => [80, 443, 8080, 8443, 8983],
+    dport   => [80, 443, 8080, 8443, 8983],
     proto  => tcp,
     action => accept,
 }
