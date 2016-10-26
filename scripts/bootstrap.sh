@@ -14,13 +14,13 @@ tar xzvf "$JDK" --directory /apps
 # find the newly extracted JDK
 JAVA_HOME=$(find /apps -maxdepth 1 -type d -name 'jdk*' | tail -n1)
 ln -s "$JAVA_HOME" /apps/java
-cat > /etc/profile.d/mdsoar.sh <<END
+cat > /etc/profile.d/drum.sh <<END
 export JAVA_HOME=$JAVA_HOME
 export PATH=\$JAVA_HOME/bin:/apps/ant/bin:\$PATH
 END
 
 # Make a local copy of env to avoid syncing files deployed by ant
-cp -r /apps/mdsoar/mdsoar-env/* /apps/mdsoar/
+cp -r /apps/drum/drum-env/* /apps/drum/
 chown -R vagrant:vagrant /apps
 
 # Install Maven 3.2.5

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <solr persistent="true">
   <cores defaultCoreName="fedora" adminPath="/admin/cores" zkClientTimeout="${zkClientTimeout:15000}" hostPort="8983" hostContext="solr">
-    <core instanceDir="cores/mdsoar-search/" name="mdsoar-search" dataDir="data"/>
-    <core instanceDir="cores/mdsoar-statistics/" name="mdsoar-statistics" dataDir="data"/>
-    <core instanceDir="cores/mdsoar-oai/" name="mdsoar-oai" dataDir="data"/>
+    <core instanceDir="cores/drum-search/" name="drum-search" dataDir="data"/>
+    <core instanceDir="cores/drum-statistics/" name="drum-statistics" dataDir="data"/>
+    <core instanceDir="cores/drum-oai/" name="drum-oai" dataDir="data"/>
   </cores>
 </solr>

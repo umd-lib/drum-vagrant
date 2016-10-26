@@ -1,11 +1,11 @@
-# mdsoar-vagrant
+# drum-vagrant
 
-MD-SOAR development Vagrant environment
+DRUM development Vagrant environment
 
 ## Prerequisites
 
-- [MD-SOAR source code](https://github.com/umd-lib/mdsoar)
-- [MD-SOAR environment](https://github.com/umd-lib/mdsoar-env)
+- [DRUM source code](https://github.com/umd-lib/drum)
+- [DRUM environment](https://github.com/umd-lib/drum-env)
 - [Solr environment](https://github.com/umd-lib/solr-env) (**local** branch)
 - VirtualBox
 - Vagrant
@@ -16,63 +16,63 @@ Due to the need to manually click through Oracle's license agreement in order to
 download a JDK, the JDK is not automatically fetched by the provisioning
 scripts. Instead, manually download a tar.gz distribution for 64-bit Linux from
 [Oracle's site](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
-and place it in a `dist/` subdirectory of the `mdsoar-vagrant` checkout
+and place it in a `dist/` subdirectory of the `drum-vagrant` checkout
 directory.
 
 The bootstrap provisioning script will pick up any `jdk-*.tar.gz` file, but note
 that production is currently using Java 7u75, so that is the recommended version
 to use for local development.
 
-The [Vagrantfile](Vagrantfile) expects the [MD-SOAR source
-repo](https://github.com/umd-lib/mdsoar) to be on your host machine at
-`/apps/git/mdsoar`, the [MD-SOAR environment
-repo](https://github.com/umd-lib/mdsoar-env) to be at `/apps/git/mdsoar-env`,
+The [Vagrantfile](Vagrantfile) expects the [DRUM source
+repo](https://github.com/umd-lib/drum) to be on your host machine at
+`/apps/git/drum`, the [DRUM environment
+repo](https://github.com/umd-lib/drum-env) to be at `/apps/git/drum-env`,
 and the [Solr environment repo](https://github.com/umd-lib/solr-env) to be at
 `/apps/git/solr-env`.
 
 ## Usage
 
 Following the DSpace documentation conventions, `[dspace-source]` indicates the directory that you have the
-[MD-SOAR](https://github.com/umd-lib/mdsoar) source code in.
+[DRUM](https://github.com/umd-lib/drum) source code in.
 
 ```
-$ git clone https://github.com/umd-lib/mdsoar-vagrant.git
+$ git clone https://github.com/umd-lib/drum-vagrant.git
 
-# download an Oracle JDK to mdsoar-vagrant/dist (see the "Prerequisites"
+# download an Oracle JDK to drum-vagrant/dist (see the "Prerequisites"
 # section above for more information)
 
-$ cp mdsoar-vagrant/local.properties [dspace-source]
+$ cp drum-vagrant/local.properties [dspace-source]
 $ cd [dspace-source]
 $ mvn package -Denv=local -Dmirage2.on=true
 ```
 
-Then, from the `mdsoar-vagrant` directory:
+Then, from the `drum-vagrant` directory:
 
 ```
 $ vagrant up
 $ vagrant ssh
 
-vagrant@localhost$ cd /apps/mdsoar/dspace-installer
+vagrant@localhost$ cd /apps/drum/dspace-installer
 vagrant@localhost$ ant fresh_install
-vagrant@localhost$ /apps/mdsoar/bin/dspace create-administrator
+vagrant@localhost$ /apps/drum/bin/dspace create-administrator
 
-# Add mdsoar solr cores
-vagrant@localhost$ /vagrant/scripts/mdsoar-solr-cores.sh
+# Add drum solr cores
+vagrant@localhost$ /vagrant/scripts/drum-solr-cores.sh
 
 # Restore database dump
 # first place a production dump.tar.0 file in /vagrant, then run
 vagrant@localhost$ sudo pg_restore --clean --verbose -d dspace /vagrant/dump.tar.0
 
 # Start Tomcat
-vagrant@localhost$ cd /apps/mdsoar/tomcat
+vagrant@localhost$ cd /apps/drum/tomcat
 vagrant@localhost$ ./control start
 
 # After starting up Tomcat, you may want to run the following in a separate
 # window, to monitor Tomcat's startup process:
-vagrant@localhost$ tail -f /apps/mdsoar/tomcat/logs/catalina.out
+vagrant@localhost$ tail -f /apps/drum/tomcat/logs/catalina.out
 ```
 
-You should now have a running DSpace/MD-SOAR installation at
+You should now have a running DSpace/DRUM installation at
 <http://192.168.22.10:8080/>
 
 # Using the local solr jetty instance:

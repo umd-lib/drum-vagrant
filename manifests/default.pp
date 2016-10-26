@@ -32,14 +32,14 @@ package { "ImageMagick":
     ensure => present,
 }
 
-file { "/apps/mdsoar":
+file { "/apps/drum":
     ensure => 'directory',
     owner  => 'vagrant',
     group  => 'vagrant',
 }
 
 # Tomcat logs directory
-file { "/apps/mdsoar/tomcat/logs":
+file { "/apps/drum/tomcat/logs":
     ensure => 'directory',
     owner  => 'vagrant',
     group  => 'vagrant',
