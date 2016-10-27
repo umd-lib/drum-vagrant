@@ -58,7 +58,7 @@ tar xvzf "$ANT" --strip-components 1 --directory /apps/ant
 
 # Tomcat
 # can't install via yum since that is only version 6.0.24
-TOMCAT_VERSION=7.0.59
+TOMCAT_VERSION=7.0.52
 TOMCAT=/vagrant/dist/apache-tomcat-${TOMCAT_VERSION}.tar.gz
 # look for a cached tarball
 if [ ! -e "$TOMCAT" ]; then
