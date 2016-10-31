@@ -73,7 +73,7 @@ vagrant@localhost$ tail -f /apps/drum/tomcat/logs/catalina.out
 ```
 
 You should now have a running DSpace/DRUM installation at
-<http://192.168.22.10:8080/>
+<http://192.168.22.9:8080/>
 
 # Using the local solr jetty instance:
 Solr is started on system startup and the following can be done to stop/restart solr.
