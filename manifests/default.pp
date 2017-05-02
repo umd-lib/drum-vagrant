@@ -6,22 +6,31 @@ class { 'postgresql::server': }
 
 # PostgreSQL setup based on DSpace documentation
 # https://wiki.duraspace.org/display/DSDOC5x/Installing+DSpace
-postgresql::server::db { 'dspace':
-    user     => 'dspace',
-    password => postgresql_password('dspace', 'dspace'),
+postgresql::server::db { 'drum':
+    user     => 'drum',
+    owner    => 'drum',
+    password => postgresql_password('drum', 'drum'),
     encoding => 'UNICODE',
 }
+
 postgresql::server::pg_hba_rule { 'dspace access':
     type        => 'host',
-    database    => 'dspace',
-    user        => 'dspace',
+    database    => 'drum',
+    user        => 'drum',
     address     => '127.0.0.1/32',
     auth_method => 'md5',
     order       => '001',
 }
+
 # ensure there is a "root" superuser, for compatability with production db dumps
 postgresql::server::role { 'root':
     superuser => true,
+}
+
+postgresql::server::database_grant { 'drum':
+  privilege => 'ALL',
+  db        => 'drum',
+  role      => 'drum',
 }
 
 # required packages to generate thumbnails (LIBCIR-71)
