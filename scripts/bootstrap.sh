@@ -23,6 +23,13 @@ END
 cp -r /apps/drum/drum-env/* /apps/drum/
 chown -R vagrant:vagrant /apps
 
+# Install glibc.i686
+yum -y install glibc.i686
+
+# Make a local copy of env to avoid syncing files deployed by ant
+cp -r /apps/drum/drum-env/* /apps/drum/
+chown -R vagrant:vagrant /apps
+
 # Install Maven 3.2.5
 MAVEN_VERSION=3.2.5
 MAVEN=/vagrant/dist/apache-maven-${MAVEN_VERSION}-bin.tar.gz
@@ -42,7 +49,6 @@ if [ -f "$MVN_SETTINGS_FILE" ]; then
 	cp "$MVN_SETTINGS_FILE" /home/vagrant/.m2/settings.xml
 	chown -R vagrant:vagrant /home/vagrant/
 fi
-
 
 # Ant
 # can't install via yum since that is only version 1.7.1
@@ -67,6 +73,10 @@ if [ ! -e "$TOMCAT" ]; then
 fi
 tar xvzf "$TOMCAT" --directory /apps
 chown -R vagrant:vagrant /apps/apache-tomcat-${TOMCAT_VERSION}
+
+# Apache 2.4
+yum -y install httpd 
+yum -y install mod_ssl
 
 # Puppet Modules
 puppet module install puppetlabs-firewall

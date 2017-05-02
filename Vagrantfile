@@ -4,7 +4,7 @@
 Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "puppetlabs/centos-6.6-64-puppet"
+  config.vm.box = "puppetlabs/centos-7.0-64-puppet"
   config.vm.box_version = "1.0.1"
 
   # Create a forwarded port mapping which allows access to a specific port
@@ -42,7 +42,9 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", path: 'scripts/bootstrap.sh'
   config.vm.provision "shell", path: 'scripts/update-solr-env.sh'
+  config.vm.provision "shell", path: 'scripts/update-apache-env.sh'
   config.vm.provision "puppet"
+  config.vm.provision "file", source: 'files/env', destination: '/apps/drum/config/env'
   config.vm.provision "file", source: 'files/server.xml', destination: '/apps/drum/tomcat/conf/server.xml'
 
 end

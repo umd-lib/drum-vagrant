@@ -1,0 +1,17 @@
+# vim:ft=sh
+
+# SERVER ENVIRONMENT
+
+# copy this file to /apps/drum/config/env
+# and set the appropriate values for the server
+
+export IP_ADDRESS=192.168.22.9
+export SERVER_NAME=192.168.22.9
+
+# apache
+export SSL_CERT_NAME=
+export SSL_KEY_NAME=
+export SSL_CERT_DIGICERTCA=
+
+#tomcat
+export INTERNAL_PROXIES=192\.168\.22\.9
