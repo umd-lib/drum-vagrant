@@ -44,7 +44,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: 'scripts/update-solr-env.sh'
   config.vm.provision "shell", path: 'scripts/update-apache-env.sh'
   config.vm.provision "puppet"
-  config.vm.provision "file", source: 'files/env', destination: '/apps/drum/config/env'
+  config.vm.provision "file", source: 'files/env.vagrant', destination: '/apps/drum/config/env'
   config.vm.provision "file", source: 'files/server.xml', destination: '/apps/drum/tomcat/conf/server.xml'
 
 end
