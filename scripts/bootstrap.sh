@@ -69,5 +69,8 @@ tar xvzf "$TOMCAT" --directory /apps
 chown -R vagrant:vagrant /apps/apache-tomcat-${TOMCAT_VERSION}
 
 # Puppet Modules
-puppet module install puppetlabs-firewall
-puppet module install puppetlabs-postgresql
+puppet module install puppetlabs-firewall --version 1.9.0
+puppet module install puppetlabs-postgresql --version 4.9.0
+puppet module install puppetlabs-git --version 0.5.0
+puppet module install puppetlabs-vcsrepo --version 1.5.0
+

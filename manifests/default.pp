@@ -8,6 +8,7 @@ class { 'postgresql::server': }
 # https://wiki.duraspace.org/display/DSDOC5x/Installing+DSpace
 postgresql::server::db { 'dspace':
     user     => 'dspace',
+    owner     => 'dspace',
     password => postgresql_password('dspace', 'dspace'),
     encoding => 'UNICODE',
 }
@@ -51,4 +52,14 @@ firewall { '100 allow http and https access':
     dport   => [80, 443, 8080, 8443, 8983],
     proto  => tcp,
     action => accept,
+}
+
+# Install Git
+include git
+
+# Ensure that the correct branch of solr-env is checked out
+vcsrepo { '/apps/solr-env-sync':
+  ensure   => present,
+  provider => git,
+  revision => 'local',
 }
