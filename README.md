@@ -54,7 +54,6 @@ $ vagrant ssh
 
 vagrant@localhost$ cd /apps/drum/dspace-installer
 vagrant@localhost$ ant fresh_install
-vagrant@localhost$ /apps/drum/bin/dspace create-administrator
 
 # Add drum solr cores
 vagrant@localhost$ /vagrant/scripts/drum-solr-cores.sh
@@ -62,6 +61,9 @@ vagrant@localhost$ /vagrant/scripts/drum-solr-cores.sh
 # Restore database dump
 # first place a production dump.tar.0 file in /vagrant, then run (enter dspace as password when prompted)
 vagrant@localhost$ sudo pg_restore -h 127.0.0.1 -U dspace -W --clean --verbose -d dspace /vagrant/dump.tar.0
+
+# Create an administrator
+vagrant@localhost$ /apps/drum/bin/dspace create-administrator
 
 # Start Tomcat
 vagrant@localhost$ cd /apps/drum/tomcat
