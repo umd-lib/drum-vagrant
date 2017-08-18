@@ -53,7 +53,7 @@ $ vagrant up
 $ vagrant ssh
 
 vagrant@localhost$ cd /apps/drum/dspace-installer
-vagrant@localhost$ ant fresh_install
+vagrant@localhost$ ant update 
 
 # Add drum solr cores
 vagrant@localhost$ /vagrant/scripts/drum-solr-cores.sh
