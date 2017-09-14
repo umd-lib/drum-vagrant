@@ -30,6 +30,12 @@ repo](https://github.com/umd-lib/drum-env) to be at `/apps/git/drum-env`,
 and the [Solr environment repo](https://github.com/umd-lib/solr-env) to be at
 `/apps/git/solr-env`.
 
+```
+cd /apps/git
+git clone git clone git@bitbucket.org:umd-lib/drum-env.git
+git clone git clone git@bitbucket.org:umd-lib/solr-env.git
+```
+
 ## Usage
 
 Following the DSpace documentation conventions, `[dspace-source]` indicates the directory that you have the
